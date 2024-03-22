@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-/**
- * The leads optin extension allows you to store leads with double optin function.
+/*
+ * This file is part of cgoit\contao-leads-optin-bundle for Contao Open Source CMS.
  *
- * PHP version ^7.4 || ^8.0
- *
- * @copyright  Christopher Bölter 2017
- * @license    LGPL.
- * @filesource
+ * @copyright  Copyright (c) 2024, cgoIT
+ * @author     cgoIT <https://cgo-it.de>
+ * @author     Christopher Bölter
+ * @license    LGPL-3.0-or-later
  */
 
-namespace Boelter\LeadsOptin\Controller\Module;
+namespace Cgoit\LeadsOptinBundle\Controller\Module;
 
-use Boelter\LeadsOptin\Trait\TokenTrait;
-use Boelter\LeadsOptin\Util\Constants;
+use Cgoit\LeadsOptinBundle\Trait\TokenTrait;
+use Cgoit\LeadsOptinBundle\Util\Constants;
 use Codefog\HasteBundle\Form\Form;
 use Codefog\HasteBundle\StringParser;
 use Contao\Config;
@@ -32,9 +31,10 @@ use Contao\StringUtil;
 use Contao\System;
 use Contao\Template;
 use Doctrine\DBAL\Connection;
-use NotificationCenter\Model\Notification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Terminal42\NotificationCenterBundle\NotificationCenter;
+use Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer;
 
 /**
  * Provides the frontend module to handle the optin process.
@@ -55,11 +55,15 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
     public const TYPE = 'leadsoptin';
 
-    public function __construct(private readonly Connection $db, private readonly StringParser $stringParser)
-    {
+    public function __construct(
+        private readonly NotificationCenter $notificationCenter,
+        private readonly FileUploadNormalizer $fileUploadNormalizer,
+        private readonly Connection $db,
+        private readonly StringParser $stringParser,
+    ) {
     }
 
-    protected function getResponse(Template $template, ModuleModel $model, Request $request): Response|null
+    protected function getResponse(Template $template, ModuleModel $model, Request $request): Response
     {
         $token = Input::get('token');
         $template->errorMessage = $model->leadOptInErrorMessage;
@@ -72,9 +76,8 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
         $arrLead = $this->db->fetchAssociative(
             'SELECT * FROM tl_lead Where optin_token = ? AND optin_token <> ? AND optin_tstamp = ? AND optin_notification_tstamp >= ?',
-            [$token, '', '0', time() - Constants::$TOKEN_VALID_PERIOD]
-        )
-        ;
+            [$token, '', '0', time() - Constants::$TOKEN_VALID_PERIOD],
+        );
 
         if (!$arrLead || null === ($form = FormModel::findById($arrLead['form_id']))) {
             $template->isError = true;
@@ -125,17 +128,19 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
         $formConfig = $form->row();
         $tokens = $this->generateTokens(
+            $this->notificationCenter,
+            $this->fileUploadNormalizer,
             $this->db,
             $this->stringParser,
             StringUtil::deserialize($arrLead['post_data'], true),
             $formConfig,
             StringUtil::deserialize($arrLead['optin_files'], true),
-            StringUtil::deserialize($arrLead['optin_labels'], true)
-        )
-        ;
+            StringUtil::deserialize($arrLead['optin_labels'], true),
+        );
 
         $tokens['lead_created'] = Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $arrLead['created']);
         $tokens['optin_tstamp'] = Date::parse(Config::get('datimFormat'), $set['optin_tstamp']);
+
         if ($form->leadOptInStoreIp) {
             $tokens['optin_ip'] = $set['optin_ip'];
         }
@@ -151,14 +156,21 @@ class LeadsOptInModule extends AbstractFrontendModuleController
             }
         }
 
-        if (null !== ($objNotification = Notification::findByPk($model->leadOptInSuccessNotification))) {
-            $objNotification->send($tokens, $GLOBALS['TL_LANGUAGE']);
+        if (null !== $model->leadOptInSuccessNotification) {
+            $bulkyItemsStamp = $this->processBulkyItems($this->notificationCenter, $this->fileUploadNormalizer, $tokens, StringUtil::deserialize($arrLead['optin_files'], true));
+            $stamps = $this->notificationCenter->createBasicStampsForNotification((int) $model->leadOptInSuccessNotification, $tokens, $GLOBALS['TL_LANGUAGE']);
+
+            if (null !== $bulkyItemsStamp) {
+                $stamps = $stamps->with($bulkyItemsStamp);
+            }
+
+            $this->notificationCenter->sendNotificationWithStamps((int) $model->leadOptInSuccessNotification, $stamps);
         }
 
         if (
-            'redirect' === $model->leadOptInSuccessType &&
-            0 !== $model->leadOptInSuccessJumpTo &&
-            ($page = PageModel::findWithDetails($model->leadOptInSuccessJumpTo)) !== null
+            'redirect' === $model->leadOptInSuccessType
+            && 0 !== $model->leadOptInSuccessJumpTo
+            && ($page = PageModel::findWithDetails($model->leadOptInSuccessJumpTo)) !== null
         ) {
             Controller::redirect($page->getFrontendUrl());
         }

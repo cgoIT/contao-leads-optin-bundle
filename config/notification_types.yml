@@ -1,0 +1,17 @@
+services:
+   _defaults:
+      autoconfigure: true
+      autowire: true
+      public: false
+
+   Cgoit\LeadsOptinBundle\NotificationType\LeadsOptinNotification:
+      arguments:
+         - '@Terminal42\NotificationCenterBundle\Token\Definition\Factory\TokenDefinitionFactoryInterface'
+      tags:
+         - { name: 'notification_center.notification_type' }
+
+   Cgoit\LeadsOptinBundle\NotificationType\LeadsOptinSuccessNotification:
+      arguments:
+         - '@Terminal42\NotificationCenterBundle\Token\Definition\Factory\TokenDefinitionFactoryInterface'
+      tags:
+         - { name: 'notification_center.notification_type' }

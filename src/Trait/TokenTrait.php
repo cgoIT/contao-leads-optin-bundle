@@ -2,13 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Boelter\LeadsOptin\Trait;
+/*
+ * This file is part of cgoit\contao-leads-optin for Contao Open Source CMS.
+ *
+ * @copyright  Copyright (c) 2024, cgoIT
+ * @author     cgoIT <https://cgo-it.de>
+ * @author     Christopher Bölter
+ * @license    LGPL-3.0-or-later
+ */
 
-use Boelter\LeadsOptin\Util\Constants;
+namespace Cgoit\LeadsOptinBundle\Trait;
+
+use Cgoit\LeadsOptinBundle\Util\Constants;
 use Codefog\HasteBundle\StringParser;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
-use NotificationCenter\Util\Form;
+use Terminal42\NotificationCenterBundle\BulkyItem\FileItem;
+use Terminal42\NotificationCenterBundle\NotificationCenter;
+use Terminal42\NotificationCenterBundle\Parcel\Stamp\BulkyItemsStamp;
+use Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer;
 
 trait TokenTrait
 {
@@ -22,15 +34,7 @@ trait TokenTrait
      *
      * @return array<mixed>
      */
-    protected function generateTokens(
-        Connection $db,
-        StringParser $stringParser,
-        array $arrData,
-        array $arrForm,
-        array $arrFiles,
-        array $arrLabels,
-        string $delimiter = ', '
-    ): array
+    protected function generateTokens(NotificationCenter $notificationCenter, FileUploadNormalizer $fileUploadNormalizer, Connection $db, StringParser $stringParser, array $arrData, array $arrForm, array $arrFiles, array $arrLabels, string $delimiter = ', '): array
     {
         $arrTokens = [];
         $arrTokens['raw_data'] = '';
@@ -66,22 +70,52 @@ trait TokenTrait
         // Upload fields
         $arrFileNames = [];
 
-        foreach ($arrFiles as $fieldName => $file) {
-            $arrTokens['form_'.$fieldName] = Form::getFileUploadPathForToken($file);
-            $arrFileNames[] = $file['name'];
+        foreach ($fileUploadNormalizer->normalize($arrFiles) as $files) {
+            foreach ($files as $file) {
+                $arrFileNames[] = $file['name'];
+            }
         }
+
         $arrTokens['filenames'] = implode($delimiter, $arrFileNames);
 
         return $arrTokens;
     }
 
     /**
+     * @param array<mixed> $arrTokens
+     * @param array<mixed> $arrFiles
+     */
+    private function processBulkyItems(NotificationCenter $notificationCenter, FileUploadNormalizer $fileUploadNormalizer, array &$arrTokens, array $arrFiles): BulkyItemsStamp|null
+    {
+        $bulkyItemVouchers = [];
+
+        foreach ($fileUploadNormalizer->normalize($arrFiles) as $k => $files) {
+            $vouchers = [];
+
+            foreach ($files as $file) {
+                $fileItem = \is_resource($file['stream']) ?
+                    FileItem::fromStream($file['stream'], $file['name'], $file['type'], $file['size']) :
+                    FileItem::fromPath($file['tmp_name'], $file['name'], $file['type'], $file['size']);
+                $vouchers[] = $notificationCenter->getBulkyGoodsStorage()->store($fileItem);
+            }
+            $arrTokens['form_'.$k] = implode(',', $vouchers);
+            $bulkyItemVouchers = array_merge($bulkyItemVouchers, $vouchers);
+        }
+
+        if (!empty($bulkyItemVouchers)) {
+            return new BulkyItemsStamp($bulkyItemVouchers);
+        }
+
+        return null;
+    }
+
+    /**
      * @param array<mixed> $formConfig
      * @param array<mixed> $postData
      *
-     * @throws Exception
-     *
      * @return array<mixed>
+     *
+     * @throws Exception
      */
     private function getLeadData(Connection $db, array $formConfig, array $postData): array
     {
@@ -98,9 +132,9 @@ trait TokenTrait
     }
 
     /**
-     * @throws Exception
-     *
      * @return array<mixed>
+     *
+     * @throws Exception
      */
     private function getFormFields(Connection $db, int $formId, int $mainId): array
     {
@@ -121,7 +155,7 @@ trait TokenTrait
                           AND form_field.invisible=''
                         ORDER BY main_field.sorting;
                     SQL,
-                [$formId, $mainId]
+                [$formId, $mainId],
             );
         }
 
@@ -137,7 +171,7 @@ trait TokenTrait
                       AND invisible=''
                     ORDER BY sorting
                 SQL,
-            [$formId]
+            [$formId],
         );
     }
 }
