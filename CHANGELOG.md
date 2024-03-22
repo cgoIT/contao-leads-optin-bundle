@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.2...v3.0.3) (2024-03-22)
+
+
+### Miscellaneous Chores
+
+* fix ecs errors ([0accf97](https://github.com/cgoIT/contao-leads-optin-bundle/commit/0accf970e952aba49750807a19cadf725c068a03))
+
 ## [3.0.2](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.1...v3.0.2) (2024-03-22)
 
 
