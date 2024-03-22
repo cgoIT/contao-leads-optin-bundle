@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.0...v3.0.1) (2024-03-22)
+
+
+### Bug Fixes
+
+* correct composer.json ([0ea965c](https://github.com/cgoIT/contao-leads-optin-bundle/commit/0ea965c6a1f92e372a2d736ca7ad1b0292f071c3))
+
 ## 3.0.0 (2024-03-22)
 
 
