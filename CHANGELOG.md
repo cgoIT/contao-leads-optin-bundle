@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.1...v3.0.2) (2024-03-22)
+
+
+### Bug Fixes
+
+* remove obsolete services from di.yml ([7b0768d](https://github.com/cgoIT/contao-leads-optin-bundle/commit/7b0768d3b5dd6d8802ba81337f31a058ea6efff0))
+
 ## [3.0.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.0...v3.0.1) (2024-03-22)
 
 
