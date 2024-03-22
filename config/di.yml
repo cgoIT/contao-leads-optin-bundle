@@ -1,0 +1,20 @@
+services:
+   _defaults:
+      autoconfigure: true
+      autowire: true
+      public: false
+      bind:
+         $projectDir: '%kernel.project_dir%'
+         $db: '@database_connection'
+         $stringParser: '@Codefog\HasteBundle\StringParser'
+         $insertTagParser: '@contao.insert_tag.parser'
+         $formManagerFactory: '@?Terminal42\MultipageFormsBundle\FormManagerFactoryInterface'
+         $notificationCenter: '@Terminal42\NotificationCenterBundle\NotificationCenter'
+         $fileUploadNormalizer: '@Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer'
+         $formatters: '@terminal42_leads.formatters'
+         $translator: '@translator'
+         $expressionLanguage: '@terminal42_leads.expression_language'
+         $tokenDefinitionFactory: '@Terminal42\NotificationCenterBundle\Token\Definition\Factory\TokenDefinitionFactoryInterface'
+
+   Cgoit\LeadsOptinBundle\:
+      resource: ../src/*

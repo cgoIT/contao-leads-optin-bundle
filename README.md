@@ -1,9 +1,11 @@
-# Contao Lead-OptIn
+# Contao Leads-OptIn Bundle
 
-[![Latest Version on Packagist](http://img.shields.io/packagist/v/cboelter/contao-lead-optin.svg?style=flat)](https://packagist.org/packages/cboelter/contao-lead-optin)
-[![Installations via composer per month](http://img.shields.io/packagist/dm/cboelter/contao-lead-optin.svg?style=flat)](https://packagist.org/packages/cboelter/contao-lead-optin)
-[![Installations via composer total](http://img.shields.io/packagist/dt/cboelter/contao-lead-optin.svg?style=flat)](https://packagist.org/packages/cboelter/contao-lead-optin)
+[![Latest Version on Packagist](http://img.shields.io/packagist/v/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
+[![Installations via composer per month](http://img.shields.io/packagist/dm/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
+[![Installations via composer total](http://img.shields.io/packagist/dt/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
 
+***This is a fork from [cboelter/contao-lead-option](https://github.com/cboelter/contao-leads-optin).
+This fork supports notification_center 2.x and leads 3.x.***
 
 Most of the work for Version 2.X was done by [Sebastian Zoglowek](https://github.com/zoglo) thanks for this!
 

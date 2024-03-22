@@ -1,7 +1,0 @@
-services:
-   _defaults:
-      autoconfigure: true
-      autowire: true
-      public: false
-
-   Cgoit\LeadsOptinBundle\Cron\PurgeCron: ~
