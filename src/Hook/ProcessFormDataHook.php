@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of cgoit\contao-leads-optin for Contao Open Source CMS.
+ * This file is part of cgoit\contao-leads-optin-bundle for Contao Open Source CMS.
  *
  * @copyright  Copyright (c) 2024, cgoIT
  * @author     cgoIT <https://cgo-it.de>
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @license    LGPL-3.0-or-later
  */
 
-namespace Cgoit\LeadsOptinBundle\Handler;
+namespace Cgoit\LeadsOptinBundle\Hook;
 
 use Cgoit\LeadsOptinBundle\Trait\TokenTrait;
 use Cgoit\LeadsOptinBundle\Util\Constants;
@@ -19,7 +19,6 @@ use Codefog\HasteBundle\StringParser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Form;
 use Contao\PageModel;
-use Contao\Widget;
 use Doctrine\DBAL\Connection;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
 use Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer;
@@ -27,7 +26,8 @@ use Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer;
 /**
  * Provides several function to access leads hooks and send notifications.
  */
-class Hook
+#[AsHook('processFormData')]
+class ProcessFormDataHook
 {
     use TokenTrait;
 
@@ -40,22 +40,6 @@ class Hook
     }
 
     /**
-     * @param array<mixed>  $submittedData
-     * @param array<mixed>  $labels
-     * @param array<Widget> $fields
-     */
-    #[AsHook('prepareFormData')]
-    public function markPostData(array &$submittedData, array $labels, array $fields, Form $form): void
-    {
-        if (!isset($form->leadEnabled) || !$form->leadEnabled || !isset($form->leadOptIn) || !$form->leadOptIn) {
-            return;
-        }
-
-        $uniqueId = md5(uniqid((string) mt_rand(), true));
-        $submittedData[Constants::$OPTIN_FORMFIELD_NAME] = $uniqueId;
-    }
-
-    /**
      * Access the processFormData hook and handle the optin.
      *
      * @param array<mixed>      $postData
@@ -63,8 +47,7 @@ class Hook
      * @param array<mixed>|null $arrFiles
      * @param array<mixed>      $arrLabels
      */
-    #[AsHook('processFormData')]
-    public function appendOptInData(array $postData, array $formConfig, array|null $arrFiles, array $arrLabels, Form $form): void
+    public function __invoke(array $postData, array $formConfig, array|null $arrFiles, array $arrLabels, Form $form): void
     {
         if (!$formConfig['leadEnabled'] || !isset($formConfig['leadOptIn']) || !$formConfig['leadOptIn']) {
             return;
