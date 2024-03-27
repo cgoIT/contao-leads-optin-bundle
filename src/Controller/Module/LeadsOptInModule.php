@@ -149,9 +149,9 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         if (isset($GLOBALS['TL_HOOKS']['onLeadOptinSuccess']) && \is_array($GLOBALS['TL_HOOKS']['onLeadOptinSuccess'])) {
             foreach ($GLOBALS['TL_HOOKS']['onLeadOptinSuccess'] as $callback) {
                 if (\is_array($callback)) {
-                    System::importStatic($callback[0])->{$callback[1]}($arrLead, $tokens, $this);
+                    System::importStatic($callback[0])->{$callback[1]}($arrLead, $tokens, $model);
                 } elseif (\is_callable($callback)) {
-                    $callback($arrLead, $tokens, $this);
+                    $callback($arrLead, $tokens, $model);
                 }
             }
         }
