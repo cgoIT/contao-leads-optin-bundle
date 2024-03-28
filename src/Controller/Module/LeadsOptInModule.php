@@ -34,7 +34,6 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
-use Terminal42\NotificationCenterBundle\Util\FileUploadNormalizer;
 
 /**
  * Provides the frontend module to handle the optin process.
@@ -57,7 +56,6 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
     public function __construct(
         private readonly NotificationCenter $notificationCenter,
-        private readonly FileUploadNormalizer $fileUploadNormalizer,
         private readonly Connection $db,
         private readonly StringParser $stringParser,
     ) {
@@ -128,8 +126,6 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
         $formConfig = $form->row();
         $tokens = $this->generateTokens(
-            $this->notificationCenter,
-            $this->fileUploadNormalizer,
             $this->db,
             $this->stringParser,
             StringUtil::deserialize($arrLead['post_data'], true),
@@ -157,7 +153,7 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         }
 
         if (null !== $model->leadOptInSuccessNotification) {
-            $bulkyItemsStamp = $this->processBulkyItems($this->notificationCenter, $this->fileUploadNormalizer, $tokens, StringUtil::deserialize($arrLead['optin_files'], true));
+            $bulkyItemsStamp = $this->processBulkyItems($this->notificationCenter, $tokens, StringUtil::deserialize($arrLead['optin_files'], true));
             $stamps = $this->notificationCenter->createBasicStampsForNotification((int) $model->leadOptInSuccessNotification, $tokens, $GLOBALS['TL_LANGUAGE']);
 
             if (null !== $bulkyItemsStamp) {
