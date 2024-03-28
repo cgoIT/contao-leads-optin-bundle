@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.3...v3.0.4) (2024-03-28)
+
+
+### Bug Fixes
+
+* simplification with file handling ([d04781c](https://github.com/cgoIT/contao-leads-optin-bundle/commit/d04781c4bd16aaf0349ac0f6989baa8755504052))
+
 ## [3.0.3](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.2...v3.0.3) (2024-03-22)
 
 

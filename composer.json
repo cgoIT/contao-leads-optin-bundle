@@ -8,7 +8,7 @@
     "optin",
     "notification_center"
   ],
-  "version": "3.0.3",
+  "version": "3.0.4",
   "type": "contao-bundle",
   "homepage": "https://cgo-it.de",
   "license": "LGPL-3.0+",
