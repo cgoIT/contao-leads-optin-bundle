@@ -1,6 +1,7 @@
 # Contao Leads-OptIn Bundle
 
 [![Latest Version on Packagist](http://img.shields.io/packagist/v/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FcgoIT%2Fcontao-leads-optin-bundle%2Fmain%2Fcomposer.json&query=%24.require%5B%22contao%2Fcore-bundle%22%5D&label=Contao%20Version)
 [![Installations via composer per month](http://img.shields.io/packagist/dm/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
 [![Installations via composer total](http://img.shields.io/packagist/dt/cgoit/contao-leads-optin-bundle.svg?style=flat)](https://packagist.org/packages/cgoit/contao-leads-optin-bundle)
 
