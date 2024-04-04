@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.5](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.4...v3.0.5) (2024-04-04)
+
+
+### Bug Fixes
+
+* change column types to prevent "row to large" errors ([d70cbb2](https://github.com/cgoIT/contao-leads-optin-bundle/commit/d70cbb251179ac61d93e60e8ee58b36a71ff00c0))
+
 ## [3.0.4](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.3...v3.0.4) (2024-03-28)
 
 
