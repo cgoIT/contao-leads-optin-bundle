@@ -85,7 +85,7 @@ class ProcessFormDataHook
             $tokens['optin_token'] = $token;
             $tokens['optin_url'] = $this->generateOptInUrl($token, $formConfig);
 
-            $bulkyItemsStamp = $this->processBulkyItems($this->notificationCenter, $tokens, $arrFiles);
+            $bulkyItemsStamp = $this->processBulkyItems($this->notificationCenter, $tokens, $arrFiles ?: []);
             $stamps = $this->notificationCenter->createBasicStampsForNotification((int) $formConfig['leadOptInNotification'], $tokens, $GLOBALS['TL_LANGUAGE']);
 
             if (null !== $bulkyItemsStamp) {
