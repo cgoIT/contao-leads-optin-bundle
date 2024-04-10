@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.6](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.5...v3.0.6) (2024-04-10)
+
+
+### Bug Fixes
+
+* fix errors if $arrFiles is null ([678316c](https://github.com/cgoIT/contao-leads-optin-bundle/commit/678316cada121803f08a427bb37ff7b419bb18bd))
+
 ## [3.0.5](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.4...v3.0.5) (2024-04-04)
 
 
