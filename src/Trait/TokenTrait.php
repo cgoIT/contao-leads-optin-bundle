@@ -91,10 +91,16 @@ trait TokenTrait
         $bulkyItemVouchers = [];
 
         foreach ($arrFiles as $key => $file) {
-            $fileItem = FileItem::fromPath($file['tmp_name'], $file['name'], $file['type'], $file['size']);
-            $voucher = $notificationCenter->getBulkyGoodsStorage()->store($fileItem);
-            $arrTokens['form_'.$key] = $voucher;
-            $bulkyItemVouchers[] = $voucher;
+            foreach ($file as $upload) {
+                if (!\is_array($upload) && !\array_key_exists('tmp_name', $upload)) {
+                    throw new \InvalidArgumentException('$value must be an array normalized by the FileUploadNormalizer service.');
+                }
+
+                $fileItem = FileItem::fromPath($upload['tmp_name'], $upload['name'], $upload['type'], $upload['size']);
+                $voucher = $notificationCenter->getBulkyGoodsStorage()->store($fileItem);
+                $arrTokens['form_' . $key] = $voucher;
+                $bulkyItemVouchers[] = $voucher;
+            }
         }
 
         if (!empty($bulkyItemVouchers)) {
