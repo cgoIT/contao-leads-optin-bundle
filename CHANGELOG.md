@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.7](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.6...v3.0.7) (2024-06-16)
+
+
+### Bug Fixes
+
+* add shadow dependencies ([25b8bda](https://github.com/cgoIT/contao-leads-optin-bundle/commit/25b8bda0641f2971179ecb43364e1540474134a1))
+* fix handling of uploaded files ([e252fcb](https://github.com/cgoIT/contao-leads-optin-bundle/commit/e252fcb0243c43934e9f21448aa42aec3d94b6e0))
+* fix handling of uploaded files ([c581c70](https://github.com/cgoIT/contao-leads-optin-bundle/commit/c581c70794f02c05612e9f4c2c8ad235452fe370))
+
 ## [3.0.6](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.5...v3.0.6) (2024-04-10)
 
 
