@@ -185,14 +185,15 @@ trait TokenTrait
 
     /**
      * @param array<mixed> $arr
+     *
      * @return bool
      */
     private function isAssocArray(array $arr)
     {
-        if (array() === $arr) {
+        if ([] === $arr) {
             return false;
         }
 
-        return array_keys($arr) !== range(0, count($arr) - 1);
+        return array_keys($arr) !== range(0, \count($arr) - 1);
     }
 }
