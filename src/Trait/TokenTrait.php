@@ -91,15 +91,22 @@ trait TokenTrait
         $bulkyItemVouchers = [];
 
         foreach ($arrFiles as $key => $file) {
-            foreach ($file as $upload) {
-                if (!\is_array($upload) && !\array_key_exists('tmp_name', (array) $upload)) {
-                    throw new \InvalidArgumentException('$value must be an array normalized by the FileUploadNormalizer service.');
-                }
-
-                $fileItem = FileItem::fromPath($upload['tmp_name'], $upload['name'], $upload['type'], $upload['size']);
+            if ($this->isAssocArray($file)) {
+                $fileItem = FileItem::fromPath($file['tmp_name'], $file['name'], $file['type'], $file['size']);
                 $voucher = $notificationCenter->getBulkyGoodsStorage()->store($fileItem);
                 $arrTokens['form_'.$key] = $voucher;
                 $bulkyItemVouchers[] = $voucher;
+            } else {
+                foreach ($file as $upload) {
+                    if (!\is_array($upload) && !\array_key_exists('tmp_name', (array) $upload)) {
+                        throw new \InvalidArgumentException('$value must be an array normalized by the FileUploadNormalizer service.');
+                    }
+
+                    $fileItem = FileItem::fromPath($upload['tmp_name'], $upload['name'], $upload['type'], $upload['size']);
+                    $voucher = $notificationCenter->getBulkyGoodsStorage()->store($fileItem);
+                    $arrTokens['form_'.$key] = $voucher;
+                    $bulkyItemVouchers[] = $voucher;
+                }
             }
         }
 
@@ -174,5 +181,18 @@ trait TokenTrait
                 SQL,
             [$formId],
         );
+    }
+
+    /**
+     * @param array<mixed> $arr
+     * @return bool
+     */
+    private function isAssocArray(array $arr)
+    {
+        if (array() === $arr) {
+            return false;
+        }
+
+        return array_keys($arr) !== range(0, count($arr) - 1);
     }
 }
