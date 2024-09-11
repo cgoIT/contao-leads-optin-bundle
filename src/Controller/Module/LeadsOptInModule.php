@@ -58,6 +58,7 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         private readonly NotificationCenter $notificationCenter,
         private readonly Connection $db,
         private readonly StringParser $stringParser,
+        private readonly ModuleBotDetection $botDetection,
     ) {
     }
 
@@ -66,7 +67,7 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         $token = Input::get('token');
         $template->errorMessage = $model->leadOptInErrorMessage;
 
-        if (!$token) {
+        if (!$token || $this->botDetection->checkBotAllTests()) {
             $template->isError = true;
 
             return $template->getResponse();
