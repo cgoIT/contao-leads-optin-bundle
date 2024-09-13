@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cgoit\LeadsOptinBundle\Controller\Module;
 
+use BugBuster\BotDetection\ModuleBotDetection;
 use Cgoit\LeadsOptinBundle\Trait\TokenTrait;
 use Cgoit\LeadsOptinBundle\Util\Constants;
 use Codefog\HasteBundle\Form\Form;
@@ -34,7 +35,6 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
-use BugBuster\BotDetection\ModuleBotDetection;
 
 /**
  * Provides the frontend module to handle the optin process.
