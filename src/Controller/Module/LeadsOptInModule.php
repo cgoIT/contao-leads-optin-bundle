@@ -34,6 +34,7 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
+use BugBuster\BotDetection\ModuleBotDetection;
 
 /**
  * Provides the frontend module to handle the optin process.
