@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.8...v3.1.0) (2024-09-16)
+
+
+### Features
+
+* added bot detection to prevent token confirmation by mistake ([b5f7abb](https://github.com/cgoIT/contao-leads-optin-bundle/commit/b5f7abb85b75cc3efaa452fe7e0e6e3ef491011d))
+
 ## [3.0.8](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.7...v3.0.8) (2024-06-25)
 
 
