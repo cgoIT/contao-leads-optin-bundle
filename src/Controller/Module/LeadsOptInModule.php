@@ -55,12 +55,14 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
     public const TYPE = 'leadsoptin';
 
+    private readonly ModuleBotDetection $botDetection;
+
     public function __construct(
         private readonly NotificationCenter $notificationCenter,
         private readonly Connection $db,
         private readonly StringParser $stringParser,
-        private readonly ModuleBotDetection $botDetection,
     ) {
+        $this->botDetection = new ModuleBotDetection();
     }
 
     protected function getResponse(Template $template, ModuleModel $model, Request $request): Response

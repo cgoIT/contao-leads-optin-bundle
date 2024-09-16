@@ -12,7 +12,6 @@ services:
          $translator: '@translator'
          $expressionLanguage: '@terminal42_leads.expression_language'
          $tokenDefinitionFactory: '@Terminal42\NotificationCenterBundle\Token\Definition\Factory\TokenDefinitionFactoryInterface'
-         $botDetection: '@BugBuster\BotDetection\ModuleBotDetection'
 
    Cgoit\LeadsOptinBundle\:
       resource: ../src/*
