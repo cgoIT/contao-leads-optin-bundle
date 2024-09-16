@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cgoit\LeadsOptinBundle\Controller\Module;
 
+use BugBuster\BotDetection\ModuleBotDetection;
 use Cgoit\LeadsOptinBundle\Trait\TokenTrait;
 use Cgoit\LeadsOptinBundle\Util\Constants;
 use Codefog\HasteBundle\Form\Form;
@@ -54,11 +55,14 @@ class LeadsOptInModule extends AbstractFrontendModuleController
 
     public const TYPE = 'leadsoptin';
 
+    private readonly ModuleBotDetection $botDetection;
+
     public function __construct(
         private readonly NotificationCenter $notificationCenter,
         private readonly Connection $db,
         private readonly StringParser $stringParser,
     ) {
+        $this->botDetection = new ModuleBotDetection();
     }
 
     protected function getResponse(Template $template, ModuleModel $model, Request $request): Response
@@ -66,7 +70,7 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         $token = Input::get('token');
         $template->errorMessage = $model->leadOptInErrorMessage;
 
-        if (!$token) {
+        if (!$token || $this->botDetection->checkBotAllTests()) {
             $template->isError = true;
 
             return $template->getResponse();
