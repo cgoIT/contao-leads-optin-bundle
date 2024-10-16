@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.0...v3.1.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* fix notification check in LeadsOptInModule ([1ac991d](https://github.com/cgoIT/contao-leads-optin-bundle/commit/1ac991d92660b02a5b87c1d8b9c0a9beb92dabc7))
+
 ## [3.1.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.0.8...v3.1.0) (2024-09-16)
 
 
