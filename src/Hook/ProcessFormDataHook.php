@@ -17,9 +17,11 @@ use Cgoit\LeadsOptinBundle\Trait\TokenTrait;
 use Cgoit\LeadsOptinBundle\Util\Constants;
 use Codefog\HasteBundle\StringParser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Contao\Environment;
 use Contao\Form;
 use Contao\PageModel;
 use Doctrine\DBAL\Connection;
+use Exception;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
 
 /**
@@ -103,13 +105,17 @@ class ProcessFormDataHook
      */
     private function generateOptInUrl(string $token, array $formConfig): string
     {
-        $page = $GLOBALS['objPage'];
+        $url = Environment::get('uri');
 
         if ($formConfig['leadOptInTarget']) {
             $page = PageModel::findWithDetails($formConfig['leadOptInTarget']);
+            try {
+                $url = $page->getAbsoluteUrl();
+            } catch (Exception $e) {
+                // Do nothing
+            }
         }
 
-        $url = $page->getAbsoluteUrl();
         $parameter = '?token='.$token;
 
         return $url.$parameter;
