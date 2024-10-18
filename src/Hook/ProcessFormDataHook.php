@@ -108,6 +108,7 @@ class ProcessFormDataHook
 
         if ($formConfig['leadOptInTarget']) {
             $page = PageModel::findWithDetails($formConfig['leadOptInTarget']);
+            
             try {
                 $url = $page->getAbsoluteUrl();
             } catch (\Exception $e) {
