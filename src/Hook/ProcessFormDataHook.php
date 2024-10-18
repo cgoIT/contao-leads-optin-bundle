@@ -21,7 +21,6 @@ use Contao\Environment;
 use Contao\Form;
 use Contao\PageModel;
 use Doctrine\DBAL\Connection;
-use Exception;
 use Terminal42\NotificationCenterBundle\NotificationCenter;
 
 /**
@@ -111,7 +110,7 @@ class ProcessFormDataHook
             $page = PageModel::findWithDetails($formConfig['leadOptInTarget']);
             try {
                 $url = $page->getAbsoluteUrl();
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // Do nothing
             }
         }
