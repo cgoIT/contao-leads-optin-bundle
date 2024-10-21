@@ -111,13 +111,17 @@ class ProcessFormDataHook
 
             try {
                 $url = $page->getAbsoluteUrl();
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // Do nothing
             }
         }
 
-        $parameter = '?token='.$token;
+        $parameter = 'token='.$token;
 
-        return $url.$parameter;
+        $urlParts = explode('#', (string) $url, 2);
+        $url = $urlParts[0].(str_contains($urlParts[0], '?') ? '&' : '?').$parameter;
+        $hash = isset($urlParts[1]) ? '#'.$urlParts[1] : '';
+
+        return $url.$hash;
     }
 }
