@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.1.2](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.1...v3.1.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* Added missing handling for multiple url parameters and fixed code ([8897286](https://github.com/cgoIT/contao-leads-optin-bundle/commit/8897286fd2961e1cb5a98de9a9176260c7844a8e))
+* fixed code style ([ecf13ae](https://github.com/cgoIT/contao-leads-optin-bundle/commit/ecf13aecfcb90093634bde5a4dac897cddb20ff6))
+* Handle RouteParametersException on e.g. news detail pages ([76225d6](https://github.com/cgoIT/contao-leads-optin-bundle/commit/76225d6773581fffc5e43879604f8834a8327f4f))
+* removed leading whitespaces to pass code style check ([c8c6a19](https://github.com/cgoIT/contao-leads-optin-bundle/commit/c8c6a19fdae2d51ac35fd02948a6467f869b22fb))
+* removed use Exception ([92ddcb1](https://github.com/cgoIT/contao-leads-optin-bundle/commit/92ddcb154220e1a2ce5a2c8ffbb5971a50454fb2))
+
 ## [3.1.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.0...v3.1.1) (2024-10-16)
 
 
