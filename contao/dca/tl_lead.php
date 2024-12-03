@@ -22,25 +22,25 @@ $GLOBALS['TL_DCA']['tl_lead']['list']['operations']['leadsoptin'] = [
 
 // Fields
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_token'] = [
-    'sql' => "varchar(32) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 32, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_tstamp'] = [
-    'sql' => "int(10) unsigned NOT NULL default '0'",
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
 ];
 
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_files'] = [
-    'sql' => 'text NULL',
+    'sql' => ['type' => 'text', 'length' => 65535, 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_labels'] = [
-    'sql' => 'text NULL',
+    'sql' => ['type' => 'text', 'length' => 65535, 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_ip'] = [
-    'sql' => "varchar(64) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 64, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_lead']['fields']['optin_notification_tstamp'] = [
-    'sql' => "int(10) unsigned NOT NULL default '0'",
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
 ];

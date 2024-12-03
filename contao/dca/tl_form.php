@@ -19,21 +19,21 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['leadOptIn'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
     'eval' => ['tl_class' => 'w50 m12', 'submitOnChange' => true],
-    'sql' => "char(1) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 1, 'fixed' => true, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['leadOptInStoreIp'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
     'eval' => ['tl_class' => 'w50 m12'],
-    'sql' => "char(1) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 1, 'fixed' => true, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['leadOptInNotification'] = [
     'exclude' => true,
     'inputType' => 'select',
     'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true, 'mandatory' => true],
-    'sql' => "int(10) unsigned NOT NULL default '0'",
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
 ];
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['leadOptInTarget'] = [
@@ -44,7 +44,7 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['leadOptInTarget'] = [
         'fieldType' => 'radio',
         'tl_class' => 'w50',
     ],
-    'sql' => "int(10) unsigned NOT NULL default '0'",
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
     'relation' => [
         'type' => 'hasOne',
         'load' => 'eager',

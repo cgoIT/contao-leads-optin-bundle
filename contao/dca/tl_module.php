@@ -35,14 +35,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInSuccessType'] = [
     'options' => ['message', 'redirect'],
     'reference' => &$GLOBALS['TL_LANG']['tl_module'],
     'eval' => ['tl_class' => 'w50', 'submitOnChange' => true],
-    'sql' => "varchar(8) NOT NULL default 'message'",
+    'sql' => ['type' => 'string', 'length' => 8, 'default' => 'message'],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInSuccessMessage'] = [
     'exclude' => true,
     'inputType' => 'textarea',
     'eval' => ['tl_class' => 'long', 'rte' => 'tinyMCE'],
-    'sql' => 'text NULL',
+    'sql' => ['type' => 'text', 'length' => 65535, 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInSuccessJumpTo'] = [
@@ -50,40 +50,40 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInSuccessJumpTo'] = [
     'inputType' => 'pageTree',
     'foreignKey' => 'tl_page.title',
     'eval' => ['fieldType' => 'radio', 'tl_class' => 'clr'],
-    'sql' => 'int(10) unsigned NOT NULL default 0',
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInErrorMessage'] = [
     'exclude' => true,
     'inputType' => 'textarea',
     'eval' => ['tl_class' => 'clr long', 'rte' => 'tinyMCE'],
-    'sql' => 'text NULL',
+    'sql' => ['type' => 'text', 'length' => 65535, 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInSuccessNotification'] = [
     'exclude' => true,
     'inputType' => 'select',
     'eval' => ['tl_class' => 'w50 m12', 'includeBlankOption' => true, 'mandatory' => false],
-    'sql' => "int(10) unsigned NOT NULL default '0'",
+    'sql' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'default' => 0],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptIndNeedsUserInteraction'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
     'eval' => ['tl_class' => 'w50 clr', 'submitOnChange' => true],
-    'sql' => "char(1) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 1, 'fixed' => true, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInUserInteractionMessage'] = [
     'exclude' => true,
     'inputType' => 'textarea',
     'eval' => ['tl_class' => 'long', 'rte' => 'tinyMCE'],
-    'sql' => 'text NULL',
+    'sql' => ['type' => 'text', 'length' => 65535, 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['leadOptInUserInteractionSubmit'] = [
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50'],
-    'sql' => "varchar(256) NOT NULL default ''",
+    'sql' => ['type' => 'string', 'length' => 256, 'default' => ''],
 ];
