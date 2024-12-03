@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.3](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.2...v3.1.3) (2024-12-03)
+
+
+### Bug Fixes
+
+* fix dependencies ([d0a959c](https://github.com/cgoIT/contao-leads-optin-bundle/commit/d0a959cbac3381cbe92e3db9d8048820444a9f63))
+* use Doctrine Schema Representation for db columns ([2c0c260](https://github.com/cgoIT/contao-leads-optin-bundle/commit/2c0c26082187e8ccb967c53585a0538978d8f913))
+
 ## [3.1.2](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.1...v3.1.2) (2024-10-21)
 
 
