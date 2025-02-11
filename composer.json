@@ -31,7 +31,7 @@
     "source": "https://github.com/cgoIT/contao-leads-optin-bundle"
   },
   "require": {
-    "php": "^8.1 || ^8.2 || ^8.3",
+    "php": "^8.1 || ^8.2 || ^8.3 || ^8.4",
     "contao/core-bundle": "^4.13 || ^5.3",
     "codefog/contao-haste": "^5.1",
     "doctrine/dbal": "^3.3",
@@ -45,7 +45,7 @@
     "psr/log": "^2.0 || ^3.0",
     "terminal42/contao-leads": "^3.0",
     "terminal42/notification_center": "^2.0",
-    "bugbuster/contao-botdetection-bundle": "^1.8"
+    "bugbuster/contao-botdetection-bundle": "^1.12"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.3.1",
