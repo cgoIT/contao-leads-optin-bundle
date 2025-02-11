@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.4](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.3...v3.1.4) (2025-02-11)
+
+
+### Miscellaneous Chores
+
+* fix copyright ([eb9c086](https://github.com/cgoIT/contao-leads-optin-bundle/commit/eb9c086fdf37e80cd559716719e28b6c57ff969c))
+
 ## [3.1.3](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.2...v3.1.3) (2024-12-03)
 
 
