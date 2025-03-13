@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.6](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.5...v3.1.6) (2025-03-13)
+
+
+### Miscellaneous Chores
+
+* fix build-tools errors ([574b79b](https://github.com/cgoIT/contao-leads-optin-bundle/commit/574b79b43643f9b59a9e9c581f5f67d760071bf6))
+
 ## [3.1.5](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.4...v3.1.5) (2025-02-11)
 
 
