@@ -2,15 +2,15 @@
 
 <?php $this->block('content'); ?>
 
-<?php if($this->isError): ?>
+<?php if ($this->isError): ?>
     <?= $this->errorMessage; ?>
 <?php endif; ?>
 
-<?php if($this->showTokenForm && !$this->isError): ?>
+<?php if ($this->showTokenForm && !$this->isError): ?>
     <?= $this->tokenForm; ?>
 <?php endif; ?>
 
-<?php if(!$this->isError): ?>
+<?php if (!$this->isError): ?>
     <?= $this->successMessage; ?>
 <?php endif; ?>
 

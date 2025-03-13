@@ -31,13 +31,14 @@ class PhpSpreadsheetExporter extends \Terminal42\LeadsBundle\Export\PhpSpreadshe
 
     public function __construct(
         string $projectDir,
+        ServiceLocator $valueBinders,
         ServiceLocator $formatters,
         Connection $connection,
         private readonly TranslatorInterface $translator,
         StringParser $parser,
         ExpressionLanguage|null $expressionLanguage = null,
     ) {
-        parent::__construct($projectDir, $formatters, $connection, $this->translator, $parser, $expressionLanguage);
+        parent::__construct($projectDir, $valueBinders, $formatters, $connection, $this->translator, $parser, $expressionLanguage);
     }
 
     /**
