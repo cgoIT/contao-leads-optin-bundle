@@ -13,4 +13,4 @@ declare(strict_types=1);
 
 // Palettes
 $GLOBALS['TL_DCA']['tl_lead_export']['palettes']['optinCsv'] =
-    '{name_legend},name,type,filename;{config_legend},headerFields,export;{date_legend:hide},lastRun,skipLastRun';
+    '{name_legend},name,type,filename;{config_legend},headerFields,export;{date_legend:collapsed},lastRun,skipLastRun';
