@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.6...v3.2.0) (2025-03-18)
+
+
+### Features
+
+* since contao 4.13 is eol the extension only support contao 5 from now on ([5adb0ac](https://github.com/cgoIT/contao-leads-optin-bundle/commit/5adb0acf9673ba039d9920c0d489c1f8c4364896))
+
 ## [3.1.6](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.5...v3.1.6) (2025-03-13)
 
 
