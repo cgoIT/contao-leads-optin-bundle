@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.2.0...v4.0.0) (2025-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* use twig templates
+
+### Features
+
+* use twig templates ([92273f4](https://github.com/cgoIT/contao-leads-optin-bundle/commit/92273f4478177de7029bed408a017730962dbeb8))
+
 ## [3.2.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.1.6...v3.2.0) (2025-03-18)
 
 
