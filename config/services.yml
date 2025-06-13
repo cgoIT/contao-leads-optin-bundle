@@ -6,6 +6,7 @@ services:
       bind:
          $projectDir: '%kernel.project_dir%'
          $db: '@database_connection'
+         $contentUrlGenerator: '@contao.routing.content_url_generator'
          $stringParser: '@Codefog\HasteBundle\StringParser'
          $notificationCenter: '@Terminal42\NotificationCenterBundle\NotificationCenter'
          $valueBinders: '@terminal42_leads.value_binders'
@@ -13,6 +14,10 @@ services:
          $translator: '@translator'
          $expressionLanguage: '@terminal42_leads.expression_language'
          $tokenDefinitionFactory: '@Terminal42\NotificationCenterBundle\Token\Definition\Factory\TokenDefinitionFactoryInterface'
+
+   _instanceof:
+      Contao\CoreBundle\Migration\AbstractMigration:
+         tags: [ 'contao.migration' ]
 
    Cgoit\LeadsOptinBundle\:
       resource: ../src/*

@@ -5,7 +5,7 @@
         <source>Save requests</source>
         <target>Anfragen speichern</target>
       </trans-unit>
-      <trans-unit id="FMD.leadsoptin.0">
+      <trans-unit id="FMD.leads_optin.0">
         <source>Opt-in processing</source>
         <target>Opt-in Verarbeitung</target>
       </trans-unit>

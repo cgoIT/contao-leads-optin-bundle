@@ -22,6 +22,8 @@ use Contao\Config;
 use Contao\Controller;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
+use Contao\CoreBundle\Routing\ContentUrlGenerator;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Date;
 use Contao\Environment;
 use Contao\FormModel;
@@ -30,7 +32,6 @@ use Contao\ModuleModel;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
-use Contao\Template;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,12 +49,12 @@ use Terminal42\NotificationCenterBundle\NotificationCenter;
  * @property string      $leadOptInSuccessType
  * @property int         $leadOptInSuccessJumpTo
  */
-#[AsFrontendModule(type: LeadsOptInModule::TYPE, category: 'leads', template: 'mod_leads_optin')]
+#[AsFrontendModule(type: LeadsOptInModule::TYPE, category: 'leads')]
 class LeadsOptInModule extends AbstractFrontendModuleController
 {
     use TokenTrait;
 
-    public const TYPE = 'leadsoptin';
+    public const TYPE = 'leads_optin';
 
     private readonly ModuleBotDetection $botDetection;
 
@@ -61,15 +62,21 @@ class LeadsOptInModule extends AbstractFrontendModuleController
         private readonly NotificationCenter $notificationCenter,
         private readonly Connection $db,
         private readonly StringParser $stringParser,
+        private readonly ContentUrlGenerator $contentUrlGenerator,
     ) {
         $this->botDetection = new ModuleBotDetection();
     }
 
-    protected function getResponse(Template $template, ModuleModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
         $token = Input::get('token');
+        $template->searchable = false;
+
+        $template->isError = false;
+        $template->showTokenForm = false;
         $template->errorMessage = $model->leadOptInErrorMessage;
 
+        // Don't do anything on requests of any bot
         if (!$token || $this->botDetection->checkBotAllTests()) {
             $template->isError = true;
 
@@ -172,7 +179,8 @@ class LeadsOptInModule extends AbstractFrontendModuleController
             && 0 !== $model->leadOptInSuccessJumpTo
             && ($page = PageModel::findWithDetails($model->leadOptInSuccessJumpTo)) !== null
         ) {
-            Controller::redirect($page->getFrontendUrl());
+            $redirectUrl = $this->contentUrlGenerator->generate($page);
+            Controller::redirect($redirectUrl);
         }
 
         $template->successMessage = $this->stringParser->recursiveReplaceTokensAndTags($model->leadOptInSuccessMessage, $tokens);
