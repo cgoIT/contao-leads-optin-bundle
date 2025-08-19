@@ -31,10 +31,10 @@
     "source": "https://github.com/cgoIT/contao-leads-optin-bundle"
   },
   "require": {
-    "php": "^8.1",
+    "php": "^8.2",
     "contao/core-bundle": "^5.3",
     "codefog/contao-haste": "^5.1",
-    "doctrine/dbal": "^3.3",
+    "doctrine/dbal": "^3.3 || ^4.0",
     "symfony/config": "^6.0 || ^7.2",
     "symfony/dependency-injection": "^6.1 || ^7.2",
     "symfony/expression-language": "^6.0 || ^7.2",
@@ -72,7 +72,7 @@
   },
   "scripts": {
     "all": [
-      "@cs-fixer",
+      "@ecs",
       "@rector",
       "@phpstan",
       "@depcheck"
