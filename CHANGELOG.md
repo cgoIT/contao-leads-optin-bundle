@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.0.0...v4.0.1) (2025-08-19)
+
+
+### Miscellaneous Chores
+
+* update version contraints ([af1ebd8](https://github.com/cgoIT/contao-leads-optin-bundle/commit/af1ebd8216015b8c7abcfe82ad93483a1d042110))
+
 ## [4.0.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v3.2.0...v4.0.0) (2025-06-13)
 
 
