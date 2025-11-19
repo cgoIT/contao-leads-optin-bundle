@@ -14,6 +14,7 @@ This file is part of cgoit\\contao-leads-optin-bundle for Contao Open Source CMS
 @copyright  Copyright (c) $year, cgoIT
 @author     cgoIT <https://cgo-it.de>
 @author     Christopher Bölter
+@author     Carsten Götzinger
 @license    LGPL-3.0-or-later
 EOF
         ,

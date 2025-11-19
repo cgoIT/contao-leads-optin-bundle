@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @copyright  Copyright (c) 2025, cgoIT
  * @author     cgoIT <https://cgo-it.de>
  * @author     Christopher Bölter
+ * @author     Carsten Götzinger
  * @license    LGPL-3.0-or-later
  */
 
