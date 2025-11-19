@@ -45,11 +45,11 @@ trait TokenTrait
             }
 
             $stringParser->flatten($v, 'form_'.$k, $arrTokens, $delimiter);
-            $arrTokens['formlabel_'.$k] = $arrLabels[$k] ?? ucfirst($k);
-            $arrTokens['raw_data'] .= ($arrLabels[$k] ?? ucfirst($k)).': '.(\is_array($v) ? implode(', ', $v) : $v)."\n";
+            $arrTokens['formlabel_'.$k] = $arrLabels[$k] ?? ucfirst((string) $k);
+            $arrTokens['raw_data'] .= ($arrLabels[$k] ?? ucfirst((string) $k)).': '.(\is_array($v) ? implode(', ', $v) : $v)."\n";
 
             if (!empty($v)) {
-                $arrTokens['raw_data_filled'] .= ($arrLabels[$k] ?? ucfirst($k)).': '.(\is_array($v) ? implode(', ', $v) : $v)."\n";
+                $arrTokens['raw_data_filled'] .= ($arrLabels[$k] ?? ucfirst((string) $k)).': '.(\is_array($v) ? implode(', ', $v) : $v)."\n";
             }
         }
 
