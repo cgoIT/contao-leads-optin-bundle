@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cgoit\LeadsOptinBundle\Exporter;
 
+use Contao\StringUtil;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Terminal42\LeadsBundle\Export\AbstractExporter;
 
@@ -25,6 +26,10 @@ trait ExporterTrait
      */
     protected function addColumns(TranslatorInterface $translator, array $arrColumns): array
     {
+        $config = $this->getConfig();
+        $fields = StringUtil::deserialize($config['fields'], true);
+        $arrExportFields = array_column($fields, 'field');
+
         $arrOptinKeys = [
             [
                 'id' => '_optin_token',
@@ -49,6 +54,8 @@ trait ExporterTrait
                 'label' => static fn () => '',
             ],
         ];
+
+        $arrOptinKeys = array_filter($arrOptinKeys, static fn ($arrOptinKey) => in_array($arrOptinKey['id'], $arrExportFields));
 
         return array_merge($arrColumns, $arrOptinKeys);
     }
