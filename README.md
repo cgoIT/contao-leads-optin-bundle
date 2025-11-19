@@ -78,9 +78,20 @@ Include this module on the page, you have selected in form configuration as the 
 
 #### Export ####
 
-This extension provides a custom exporter for the opt in. In the export configuration you can see a new export type called "OptIn-Export CSV (.csv)".
-It provides a custom data collector and exporter to export all needed data for the optin. You only need to select this exporter and give it a name.
+This extension provides a custom exporter for the opt in. In the export configuration you can see a new export types prefixed with "OptIn".
 
+![Export configuration Types](docs/screenshot-optin-export-types.png)
+
+They provide a custom data collector and exporter to export all needed data for the optin. You only need to select this exporter and give it a name.
+
+##### Filtering the export #####
+
+If you want to filter the export to only include leads where the opt-in process is completly done, you can use the filter condition with a value
+of `_optin_tstamp > 0`.
+
+![Export filter configuration](docs/screenshot-optin-export-filter.png)
+
+#### Leads list ####
 The people icon in the backend list of leads shows you the opt in state -> green means opt in is done -> grey means opt in is not done right now.
 
 ![Export configuration](docs/screenshot-optin-export.png)

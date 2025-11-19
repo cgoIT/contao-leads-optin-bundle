@@ -52,4 +52,13 @@ trait ExporterTrait
 
         return array_merge($arrColumns, $arrOptinKeys);
     }
+
+    protected function getTokens(array $lead): array
+    {
+        return array_merge(parent::getTokens($lead), [
+            '_optin_token' => $lead['optin_token'],
+            '_optin_tstamp' => $lead['optin_tstamp'],
+            '_optin_ip' => $lead['optin_ip'],
+        ]);
+    }
 }
