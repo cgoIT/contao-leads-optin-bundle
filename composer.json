@@ -45,7 +45,8 @@
     "psr/log": "^3.0",
     "terminal42/contao-leads": "^3.1",
     "terminal42/notification_center": "^2.0",
-    "bugbuster/contao-botdetection-bundle": "^1.8"
+    "bugbuster/contao-botdetection-bundle": "^1.8",
+    "menatwork/contao-multicolumnwizard-bundle": "^3.6"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.3.1",

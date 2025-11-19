@@ -55,11 +55,16 @@ trait ExporterTrait
             ],
         ];
 
-        $arrOptinKeys = array_filter($arrOptinKeys, static fn ($arrOptinKey) => in_array($arrOptinKey['id'], $arrExportFields));
+        $arrOptinKeys = array_filter($arrOptinKeys, static fn ($arrOptinKey) => \in_array($arrOptinKey['id'], $arrExportFields, true));
 
         return array_merge($arrColumns, $arrOptinKeys);
     }
 
+    /**
+     * @param array<mixed> $lead
+     *
+     * @return array<mixed>
+     */
     protected function getTokens(array $lead): array
     {
         return array_merge(parent::getTokens($lead), [
