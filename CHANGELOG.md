@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.1.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.0.1...v4.1.0) (2025-11-19)
+
+
+### Features
+
+* add option to filter leads by _optin_tstamp ([d481b65](https://github.com/cgoIT/contao-leads-optin-bundle/commit/d481b65c0a6e396c1d875b54361bb5900475e051))
+* option to configure which optin fields should be included in export ([24d7cf6](https://github.com/cgoIT/contao-leads-optin-bundle/commit/24d7cf63b7f9764e1d1b91e7c3ebaa6547778ee7))
+
+
+### Miscellaneous Chores
+
+* fix file headers ([868131e](https://github.com/cgoIT/contao-leads-optin-bundle/commit/868131e53f28c1c6af0ed00f458928390b111fba))
+* fix phpstan errors ([7e4f4b5](https://github.com/cgoIT/contao-leads-optin-bundle/commit/7e4f4b5e91746dcf3417ac5f918a21b7df7bd552))
+* rector changes ([c050289](https://github.com/cgoIT/contao-leads-optin-bundle/commit/c0502897f7666c3703b2b8e92a7538d32e660220))
+
 ## [4.0.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.0.0...v4.0.1) (2025-08-19)
 
 
