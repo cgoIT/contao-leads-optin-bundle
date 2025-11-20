@@ -43,8 +43,14 @@ class CsvExporter extends \Terminal42\LeadsBundle\Export\CsvExporter
         return $this->addColumns($this->translator, parent::getColumns());
     }
 
-    protected function getFileExtension(): string
+    /**
+     * @return array<mixed>
+     */
+    protected function getConfig(): array
     {
-        return '.csv';
+        $arrConfig = parent::getConfig();
+        $arrConfig['type'] = lcfirst(str_replace('optin', '', $arrConfig['type']));
+
+        return $arrConfig;
     }
 }
