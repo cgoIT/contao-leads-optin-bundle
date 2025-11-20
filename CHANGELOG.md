@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.1.0...v4.1.1) (2025-11-20)
+
+
+### Bug Fixes
+
+* show filter expression in leads export also for optin csv export ([374292b](https://github.com/cgoIT/contao-leads-optin-bundle/commit/374292b2ebddc2e6d1340034c41813d11f9da4c2))
+
 ## [4.1.0](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.0.1...v4.1.0) (2025-11-19)
 
 
