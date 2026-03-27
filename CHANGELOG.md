@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.1.2](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.1.1...v4.1.2) (2026-03-27)
+
+
+### Miscellaneous Chores
+
+* add [@twig-cs-fixer](https://github.com/twig-cs-fixer) ([00e81bd](https://github.com/cgoIT/contao-leads-optin-bundle/commit/00e81bde31931cd6c77dc5d270d81093cb06d9cc))
+* integrate twig-cs-fixer ([6bd2a12](https://github.com/cgoIT/contao-leads-optin-bundle/commit/6bd2a12eda69bc7b2001f09b609691d42c7452f0))
+* update copyright header ([93090a0](https://github.com/cgoIT/contao-leads-optin-bundle/commit/93090a078d41e7eedaf1a19e6b87792d0c8e04b6))
+
 ## [4.1.1](https://github.com/cgoIT/contao-leads-optin-bundle/compare/v4.1.0...v4.1.1) (2025-11-20)
 
 
