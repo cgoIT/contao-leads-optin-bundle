@@ -76,6 +76,7 @@
       "@ecs",
       "@rector",
       "@phpstan",
+      "@twig-cs-fixer",
       "@depcheck"
     ]
   }
