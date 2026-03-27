@@ -74,9 +74,9 @@
   "scripts": {
     "all": [
       "@ecs",
+      "@twig-cs-fixer",
       "@rector",
       "@phpstan",
-      "@twig-cs-fixer",
       "@depcheck"
     ]
   }
